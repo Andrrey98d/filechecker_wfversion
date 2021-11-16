@@ -16,6 +16,7 @@ namespace filechecker_wfversion
         public static FileInfo fn = new FileInfo(path);
         public static FileInfo fn_2 = new FileInfo(path);
         const string path_nonsign = @"D:\\nonconst.txt";
+        internal static string[] DGW_headers = new string[3];
         static string[] literals = new string[16];
         public object patt_1 = "Сигнатура";
         static Tuple<string, string, string>[] sign_array = new Tuple<string, string, string>[literals.Length];
@@ -38,6 +39,7 @@ namespace filechecker_wfversion
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            DIR_OPT dr = new DIR_OPT();
             line_count += CountAllLines(fn);
             noncons_count += CountAllLines(fn_2);
             string[] temp_array = File.ReadAllLines(fn.FullName);
@@ -58,7 +60,18 @@ namespace filechecker_wfversion
             array_nonsign[2] = new Tuple<string, string>("SCAP", "2010");
             array_nonsign[3] = new Tuple<string, string>("VERITAS_Backup_exec", "3527");
             array_nonsign[4] = new Tuple<string, string>("CoC", "9339");
+
+            dr.ARR_FILL();
+
             Array.Resize(ref array_nonsign, array_nonsign.Length + (noncons_count - array_nonsign.Length));
+            for (int i = 0; i < DGW_headers.Length; i++)
+            {
+                DGW_headers[i] = dr.header_values_[i];
+            }
+            dataGridView_columns_add(ref dataGridView1);
+
+            //Finally add the Rows
+            dataGridView1.Rows.Add(literals.Length);
         }
 
         private void VScrollBar1_Scroll(object sender, ScrollEventArgs e)
@@ -121,7 +134,7 @@ namespace filechecker_wfversion
                     }
                     File.Delete(path);
                     File.Move(new_path, path);
-                    
+
                 }
             }
         }
@@ -250,9 +263,39 @@ namespace filechecker_wfversion
                 materialTextBox1.Text = paste;
                 paste = null;
             }
+
         }
 
         private void listBox2_SelectedIndexChanged_1(object sender, EventArgs e) { }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        public static void dataGridView_columns_add(ref DataGridView dgw)
+        {
+            dgw.Columns.Add("column one", DGW_headers[0]);
+            dgw.Columns.Add("column two", DGW_headers[1]);
+            dgw.Columns.Add("column three", DGW_headers[2]);
+        }
+
+        public static void dataGridView_rows_fill(ref DataGridView dgw)
+        {
+            for (int k = 0; k < sign_array.Length; k++)
+            {
+                for (int i = 0; i < dgw.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dgw.Columns.Count; j++)
+                    {
+                        for (int z = 0; z < 3; z++) {
+                            dgw.Rows[i].Cells[j].Value = sign_array[k][z];
+                        }
+                    }
+                }
+            }
+
+
+        }
     }
 }
 

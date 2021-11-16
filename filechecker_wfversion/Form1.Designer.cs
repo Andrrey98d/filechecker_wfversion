@@ -29,6 +29,7 @@ namespace filechecker_wfversion
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
@@ -40,6 +41,12 @@ namespace filechecker_wfversion
             this.hexBox1 = new Be.Windows.Forms.HexBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.form1BindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // listBox1
@@ -109,7 +116,7 @@ namespace filechecker_wfversion
             // 
             this.materialTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.materialTextBox1.Depth = 0;
-            this.materialTextBox1.Font = new System.Drawing.Font("Roboto", 12F);
+            this.materialTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.materialTextBox1.Location = new System.Drawing.Point(304, 348);
             this.materialTextBox1.MaxLength = 50;
             this.materialTextBox1.MouseState = MaterialSkin.MouseState.OUT;
@@ -191,11 +198,30 @@ namespace filechecker_wfversion
             this.materialLabel2.TabIndex = 28;
             this.materialLabel2.Text = "ENTER - добавить изменения в файл";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(599, 71);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(398, 218);
+            this.dataGridView1.TabIndex = 29;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // form1BindingSource
+            // 
+            this.form1BindingSource.DataSource = typeof(filechecker_wfversion.Form1);
+            // 
+            // form1BindingSource1
+            // 
+            this.form1BindingSource1.DataSource = typeof(filechecker_wfversion.Form1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(581, 483);
+            this.ClientSize = new System.Drawing.Size(1051, 608);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.hexBox1);
@@ -210,6 +236,9 @@ namespace filechecker_wfversion
             this.Name = "Form1";
             this.Text = "file_checker";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -226,6 +255,9 @@ namespace filechecker_wfversion
         private Be.Windows.Forms.HexBox hexBox1;
         private System.Windows.Forms.ListBox listBox2;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private System.Windows.Forms.BindingSource form1BindingSource;
+        private System.Windows.Forms.BindingSource form1BindingSource1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

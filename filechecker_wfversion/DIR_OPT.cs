@@ -7,13 +7,33 @@ using System.IO;
 
 namespace filechecker_wfversion
 {
-    class DIR_OPT
+    public class DIR_OPT
     {
         internal static string StartupPath { get; set; } = Environment.CurrentDirectory;
-
-        void sh_mes()
+        public List<string> header_values_ = new List<string>();
+       
+        public void Main()
+        {
+            ARR_FILL();
+        }
+        static void sh_mes()
         {
             Console.WriteLine(StartupPath);
+        }
+
+        public void ARR_FILL()
+        {
+            string[] header = {
+                "Cигнатура",
+                "Использование",
+                "Порт/протокол"
+            };
+                header_values_.AddRange(header);
+            
+        }
+        internal void Notify_error()
+        {
+            Console.WriteLine("error");
         }
     }
 }
