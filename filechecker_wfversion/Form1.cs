@@ -121,7 +121,7 @@ namespace filechecker_wfversion
                     }
                     File.Delete(path);
                     File.Move(new_path, path);
-                    Console.ReadLine(); //initial commit
+                    Console.WriteLine("111");
                 }
             }
         }
