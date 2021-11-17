@@ -19,7 +19,7 @@ namespace filechecker_wfversion
         internal static string[] DGW_headers = new string[3];
         static string[] literals = new string[16];
         public object patt_1 = "Сигнатура";
-        static Tuple<string, string, string>[] sign_array = new Tuple<string, string, string>[literals.Length];
+        static ValueTuple<string, string, string>[] sign_array = new ValueTuple<string, string, string>[literals.Length];
         static Tuple<string, string>[] array_nonsign = new Tuple<string, string>[5];
         public string temp = null;
         public string paste = null;
@@ -49,7 +49,7 @@ namespace filechecker_wfversion
             {
                 string[] t_a_ = Array.Empty<string>();
                 t_a_ = temp_array[j].Split('-'); //3
-                sign_array[j] = new Tuple<string, string, string>(t_a_[0], t_a_[1], t_a_[2]);
+                sign_array[j] = new ValueTuple<string, string, string>(t_a_[0], t_a_[1], t_a_[2]);
                 listBox1.Items.Add(sign_array[j]);
                 literals[j] = t_a_[0].ToUpper(); // 0x800..., то есть первый столбец
                 t_a_ = null;
@@ -72,6 +72,7 @@ namespace filechecker_wfversion
 
             //Finally add the Rows
             dataGridView1.Rows.Add(literals.Length);
+            dataGridView_rows_fill(ref dataGridView1);
         }
 
         private void VScrollBar1_Scroll(object sender, ScrollEventArgs e)
@@ -288,7 +289,9 @@ namespace filechecker_wfversion
                     for (int j = 0; j < dgw.Columns.Count; j++)
                     {
                         for (int z = 0; z < 3; z++) {
-                            dgw.Rows[i].Cells[j].Value = sign_array[k][z];
+                            dgw.Rows[i].Cells[z].Value = sign_array[k].Item1;
+                            dgw.Rows[i].Cells[z].Value = sign_array[k].Item2;
+                            dgw.Rows[i].Cells[z].Value = sign_array[k].Item3;
                         }
                     }
                 }
