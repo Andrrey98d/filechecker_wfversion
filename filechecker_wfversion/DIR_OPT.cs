@@ -4,36 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Windows.Forms;
 
 namespace filechecker_wfversion
 {
-    public class DIR_OPT
+    public class DIR_OPT : Form1
     {
         internal static string StartupPath { get; set; } = Environment.CurrentDirectory;
         public List<string> header_values_ = new List<string>();
-       
         public void Main()
         {
-            ARR_FILL();
+          
         }
         static void sh_mes()
         {
             Console.WriteLine(StartupPath);
         }
 
-        public void ARR_FILL()
-        {
-            string[] header = {
-                "Cигнатура",
-                "Использование",
-                "Порт/протокол"
-            };
-                header_values_.AddRange(header);
-            
-        }
+      
         internal void Notify_error()
         {
             Console.WriteLine("error");
         }
+ 
+
     }
 }
+
+
+

@@ -15,11 +15,10 @@ namespace filechecker_wfversion
         const string path = @"D:\\sign.txt";
         public static FileInfo fn = new FileInfo(path);
         public static FileInfo fn_2 = new FileInfo(path);
-        const string path_nonsign = @"D:\\nonconst.txt";
-        internal static string[] DGW_headers = new string[3];
+        //_ = @"D:\\nonconst.txt";
         static string[] literals = new string[16];
         public object patt_1 = "Сигнатура";
-        static ValueTuple<string, string, string>[] sign_array = new ValueTuple<string, string, string>[literals.Length];
+        internal static ValueTuple<string, string, string>[] sign_array = new ValueTuple<string, string, string>[literals.Length];
         static Tuple<string, string>[] array_nonsign = new Tuple<string, string>[5];
         public string temp = null;
         public string paste = null;
@@ -34,7 +33,6 @@ namespace filechecker_wfversion
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             ColorScheme colorScheme = new ColorScheme(Primary.Blue800, Primary.Blue900, Primary.Blue500, Accent.LightBlue200, TextShade.WHITE);
             materialSkinManager.ColorScheme = colorScheme;
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -60,19 +58,6 @@ namespace filechecker_wfversion
             array_nonsign[2] = new Tuple<string, string>("SCAP", "2010");
             array_nonsign[3] = new Tuple<string, string>("VERITAS_Backup_exec", "3527");
             array_nonsign[4] = new Tuple<string, string>("CoC", "9339");
-
-            dr.ARR_FILL();
-
-            Array.Resize(ref array_nonsign, array_nonsign.Length + (noncons_count - array_nonsign.Length));
-            for (int i = 0; i < DGW_headers.Length; i++)
-            {
-                DGW_headers[i] = dr.header_values_[i];
-            }
-            dataGridView_columns_add(ref dataGridView1);
-
-            //Finally add the Rows
-            dataGridView1.Rows.Add(literals.Length);
-            dataGridView_rows_fill(ref dataGridView1);
         }
 
         private void VScrollBar1_Scroll(object sender, ScrollEventArgs e)
@@ -206,7 +191,7 @@ namespace filechecker_wfversion
                 for (int i = 0; i < sign_array.Length; i++)
                 {
                     int l = 0;
-                    if (first_line_hexed.IndexOf(literals[i], StringComparison.OrdinalIgnoreCase) >= 0)
+                    if (first_line_hexed.IndexOf((literals[i]), StringComparison.OrdinalIgnoreCase) >= 0)
                     {
                         listBox2.Items.Add($"\n{patt_1}: {literals[i]}");
                         listBox2.Items.Add($"{pattern1}: {sign_array[i].Item2}");
@@ -273,32 +258,7 @@ namespace filechecker_wfversion
         {
 
         }
-        public static void dataGridView_columns_add(ref DataGridView dgw)
-        {
-            dgw.Columns.Add("column one", DGW_headers[0]);
-            dgw.Columns.Add("column two", DGW_headers[1]);
-            dgw.Columns.Add("column three", DGW_headers[2]);
-        }
-
-        public static void dataGridView_rows_fill(ref DataGridView dgw)
-        {
-            for (int k = 0; k < sign_array.Length; k++)
-            {
-                for (int i = 0; i < dgw.Rows.Count; i++)
-                {
-                    for (int j = 0; j < dgw.Columns.Count; j++)
-                    {
-                        for (int z = 0; z < 3; z++) {
-                            dgw.Rows[i].Cells[z].Value = sign_array[k].Item1;
-                            dgw.Rows[i].Cells[z].Value = sign_array[k].Item2;
-                            dgw.Rows[i].Cells[z].Value = sign_array[k].Item3;
-                        }
-                    }
-                }
-            }
-
-
-        }
+       
     }
 }
 
